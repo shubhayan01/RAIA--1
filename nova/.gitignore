@@ -1,0 +1,14 @@
+node_modules/
+.env
+.env.local
+dist/
+*.log
+.DS_Store
+
+# Local JSON stores (prospects, pipeline, sequences, meetings, clients, mailbox)
+data/
+
+# Python / Playwright
+__pycache__/
+*.pyc
+.venv/

@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>S.C.R.I.B.E — Content Automation Agent</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <div class="app" id="app">
+    <div class="atmosphere" aria-hidden="true">
+      <div class="glow-main" id="glowMain"></div>
+      <div class="glow-cyan"></div>
+      <div class="rays"></div>
+    </div>
+
+    <!-- ===== LEFT SIDEBAR — content library ===== -->
+    <aside class="sidebar" id="sidebar">
+      <div class="side-head">
+        <span class="side-title">Content Library</span>
+        <span class="side-count" id="sideCount">0</span>
+        <button class="side-refresh" id="sideRefresh" title="Refresh" aria-label="Refresh library">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-2.6-6.4M21 3v6h-6"/></svg>
+        </button>
+      </div>
+      <div class="side-legend" id="sideLegend"></div>
+      <div class="side-list" id="sideList">
+        <div class="side-empty">No projects yet. Research a keyword to start one.</div>
+      </div>
+    </aside>
+    <button class="side-toggle" id="sideToggle" aria-label="Toggle library sidebar" title="Toggle library">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3v18M4 6h16v12H4z"/></svg>
+    </button>
+
+    <!-- ===== MAIN COLUMN ===== -->
+    <div class="main">
+      <nav>
+        <div class="brand">
+          <svg class="mark" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+            <path d="M7 25V7h5l4 11 4-11h5v18h-4V14l-3.4 9h-3.2L11 14v11z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+          </svg>
+          <span>S.C.R.I.B.E</span>
+        </div>
+        <div class="nav-right">
+          <span class="userchip" id="userChip" hidden></span>
+          <a class="logout" id="logoutBtn" href="/api/logout" hidden>Log out</a>
+          <button class="theme-toggle" id="themeToggle" aria-label="Toggle color theme" title="Toggle theme">
+            <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+            <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.5M12 19.5V22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M2 12h2.5M19.5 12H22M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8"/></svg>
+          </button>
+        </div>
+      </nav>
+
+      <div class="stage" id="stage">
+        <div class="hero">
+          <h1>Content, Researched &amp; Written</h1>
+          <p class="sub">SCRIBE searches the SERP, analyses competitors, finds the gaps, clusters keywords, writes a draft in your brand voice, fact-checks it against live sources and scores its E-E-A-T — one content workflow, all on real data.</p>
+        </div>
+
+        <div class="perch">
+          <div class="robot-wrap" aria-hidden="true">
+            <div class="robot">
+              <div class="leg l"></div><div class="leg r"></div>
+              <div class="arm l"></div><div class="arm r"></div>
+              <div class="body"></div><div class="head"></div><div class="sidebtn"></div>
+              <div class="face"><span class="eye"></span><span class="eye"></span></div>
+              <div class="antenna"></div>
+            </div>
+            <div class="robot-shadow"></div>
+          </div>
+          <div class="composer-shell" id="composerShell"></div>
+        </div>
+
+        <div class="intro-actions">
+          <button class="cando" id="whatCanYouDo" type="button">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.6 4.6L18 9l-4.4 1.4L12 15l-1.6-4.6L6 9l4.4-1.4L12 3z"/></svg>
+            What can you do?
+          </button>
+        </div>
+
+        <div class="footnote"><span class="dot"></span> <span id="statusLine">SCRIBE &mdash; content automation on real data</span></div>
+      </div>
+
+      <div class="chat" id="chat">
+        <div class="messages" id="messages"></div>
+        <div class="dock" id="dockShell"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== COMPOSER TEMPLATE (cloned into intro + dock) ===== -->
+  <template id="composerTpl">
+    <div class="composer">
+      <textarea class="c-input" rows="1" aria-label="Message SCRIBE"></textarea>
+      <div class="brief" hidden>
+        <input class="brief-site fld-input" type="text" placeholder="Your site URL (for brand voice &amp; gaps) — optional" aria-label="Your site URL" />
+        <input class="brief-extra fld-input" type="text" placeholder="Real inputs — Outcome: … | Opinion: … | Process: … (the more real material, the less it has to invent)" aria-label="Extra brief" />
+      </div>
+      <div class="composer-bottom">
+        <div class="toolpicker">
+          <button type="button" class="toolbtn" aria-haspopup="menu" aria-expanded="false" aria-label="Choose tool">
+            <span class="toolglyph">💬</span>
+            <span class="toollabel">Auto</span>
+            <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="toolmenu" role="menu" hidden></div>
+        </div>
+        <button type="button" class="brief-toggle" title="Add your site &amp; brief" aria-label="Toggle brief fields">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
+          <span>Brief</span>
+        </button>
+        <button class="generate c-send" type="button"><span>Ask&nbsp;SCRIBE</span></button>
+      </div>
+    </div>
+  </template>
+
+  <script src="/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+{
+  "name": "nova-bizdev",
+  "version": "0.1.0",
+  "description": "N.O.V.A — autonomous business-development agent",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch server.ts",
+    "start": "tsx server.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "engines": {
+    "node": ">=18.17"
+  },
+  "dependencies": {
+    "cheerio": "^1.0.0",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.2",
+    "imap-simple": "^5.1.0",
+    "node-cron": "^3.0.3",
+    "nodemailer": "^6.9.14",
+    "tsx": "^4.19.2"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/node": "^20.14.0",
+    "@types/node-cron": "^3.0.11",
+    "@types/nodemailer": "^6.4.15",
+    "typescript": "^5.6.3"
+  }
+}

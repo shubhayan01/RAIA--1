@@ -1,0 +1,48 @@
+# Render blueprint for S.A.G.E — https://render.com
+# Deploy: push this repo, then in Render → New → Blueprint, pick this repo.
+services:
+  - type: web
+    name: sage-seo
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    # Free plan works for chat / keywords / audit. Chromium (browser SERP) is
+    # memory-hungry and Render's datacenter IP is usually CAPTCHA'd by Google —
+    # for reliable Briefs/Competitors/Ranks/AI-Overview use SERP_PROVIDER=serpapi,
+    # or upgrade the plan and add a residential SERP_PROXY.
+    plan: free
+    healthCheckPath: /login
+    autoDeploy: true
+    envVars:
+      # --- Auth (set your own values in the Render dashboard) ---
+      - key: AUTH_ENABLED
+        value: "true"
+      - key: AUTH_USERNAME
+        sync: false          # set in dashboard
+      - key: AUTH_PASSWORD
+        sync: false          # set in dashboard
+      - key: AUTH_SECRET
+        generateValue: true  # Render generates a strong random secret
+
+      # --- LLM (chat + routing only) ---
+      - key: LLM_PROVIDER
+        value: groq
+      - key: LLM_MODEL
+        value: openai/gpt-oss-120b
+      - key: LLM_API_KEY
+        sync: false          # your Groq/OpenAI/Anthropic key
+
+      # --- SERP ---
+      - key: SERP_PROVIDER
+        value: google        # free browser; switch to "serpapi" for guaranteed results
+      - key: SERP_HEADLESS
+        value: "1"           # servers have no display — must stay headless
+      - key: SERP_API_KEY
+        sync: false          # only needed if SERP_PROVIDER=serpapi/dataforseo
+
+      # --- Optional Google data for the Intelligence report ---
+      - key: PAGESPEED_API_KEY
+        sync: false
+      - key: GSC_SITE_URL
+        sync: false
+      - key: GA4_PROPERTY_ID
+        sync: false

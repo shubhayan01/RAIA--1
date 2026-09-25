@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>S.A.G.E — SEO Agent</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <div class="app" id="app">
+    <div class="atmosphere" aria-hidden="true">
+      <div class="glow-main" id="glowMain"></div>
+      <div class="glow-cyan"></div>
+      <div class="rays"></div>
+      <svg class="waves" viewBox="0 0 1180 190" preserveAspectRatio="none" fill="none">
+        <path d="M0 120 Q 295 60 590 110 T 1180 96" stroke="var(--accent)" stroke-opacity=".18" stroke-width="1.2"/>
+        <path d="M0 145 Q 295 92 590 138 T 1180 124" stroke="var(--accent)" stroke-opacity=".12" stroke-width="1.2"/>
+        <path d="M0 170 Q 295 124 590 164 T 1180 152" stroke="var(--accent)" stroke-opacity=".08" stroke-width="1.2"/>
+      </svg>
+    </div>
+
+    <nav>
+      <div class="brand">
+        <svg class="mark" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+          <circle cx="16" cy="16" r="14.5" stroke="currentColor" stroke-width="1.4" opacity=".5"/>
+          <circle cx="16" cy="16" r="9" stroke="currentColor" stroke-width="1.6" opacity=".8"/>
+          <circle cx="16" cy="16" r="3.4" fill="currentColor"/>
+        </svg>
+        <span>S.A.G.E</span>
+      </div>
+      <div class="nav-right">
+        <span class="userchip" id="userChip" hidden></span>
+        <a class="logout" id="logoutBtn" href="/api/logout" hidden>Log out</a>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle color theme" title="Toggle theme">
+          <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+          <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.5M12 19.5V22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M2 12h2.5M19.5 12H22M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8"/></svg>
+        </button>
+      </div>
+    </nav>
+
+    <div class="stage" id="stage">
+      <div class="hero">
+        <h1>SEO That Runs Itself</h1>
+        <p class="sub">From keywords to rankings, S.A.G.E researches, audits, briefs and reports one autonomous SEO workflow built for agency teams.</p>
+      </div>
+
+      <div class="perch">
+        <div class="robot-wrap" aria-hidden="true">
+          <div class="robot">
+            <div class="leg l"></div><div class="leg r"></div>
+            <div class="arm l"></div><div class="arm r"></div>
+            <div class="body"></div><div class="head"></div><div class="sidebtn"></div>
+            <div class="face"><span class="eye"></span><span class="eye"></span></div>
+          </div>
+        </div>
+
+        <div class="composer-shell">
+          <div class="composer">
+            <textarea id="input" rows="1" placeholder="Say hi, or give a command like &lsquo;audit example.com&rsquo;&hellip;" aria-label="Message S.A.G.E"></textarea>
+            <div class="composer-bottom">
+              <div class="toolpicker" id="toolpicker">
+                <button type="button" class="toolbtn" id="toolbtn" aria-haspopup="menu" aria-expanded="false" aria-label="Choose tool">
+                  <span class="toolglyph">💬</span>
+                  <span class="toollabel">Auto</span>
+                  <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+                </button>
+                <div class="toolmenu" id="toolmenu" role="menu" hidden></div>
+              </div>
+              <button class="generate" id="send"><span>Ask&nbsp;SAGE</span></button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="intro-actions">
+        <button class="cando" id="whatCanYouDo" type="button">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.6 4.6L18 9l-4.4 1.4L12 15l-1.6-4.6L6 9l4.4-1.4L12 3z"/></svg>
+          What can you do?
+        </button>
+      </div>
+
+      <div class="footnote"><span class="dot"></span> <span id="statusLine">S.A.G.E &mdash; autonomous SEO for agency teams</span></div>
+    </div>
+
+    <div class="chat" id="chat">
+      <div class="messages" id="messages"></div>
+      <div class="dock">
+        <div class="composer-shell">
+          <div class="composer">
+            <textarea id="input2" rows="1" placeholder="Message S.A.G.E&hellip;" aria-label="Message S.A.G.E"></textarea>
+            <div class="composer-bottom">
+              <div class="toolpicker" id="toolpicker2">
+                <button type="button" class="toolbtn" id="toolbtn2" aria-haspopup="menu" aria-expanded="false" aria-label="Choose tool">
+                  <span class="toolglyph">💬</span>
+                  <span class="toollabel">Auto</span>
+                  <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+                </button>
+                <div class="toolmenu" id="toolmenu2" role="menu" hidden></div>
+              </div>
+              <button class="generate" id="send2"><span>Send</span></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="/app.js"></script>
+</body>
+</html>

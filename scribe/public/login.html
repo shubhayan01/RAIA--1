@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sign in — S.C.R.I.B.E</title>
+  <link rel="stylesheet" href="/styles.css" />
+  <style>
+    body{display:flex; align-items:center; justify-content:center; padding:24px}
+    .login-card{position:relative; z-index:2; width:100%; max-width:392px; background:var(--app); border:1px solid var(--app-border); border-radius:22px; box-shadow:var(--app-shadow); padding:38px 34px 30px; text-align:center}
+    .login-brand{display:inline-flex; align-items:center; gap:9px; font-weight:600; letter-spacing:.14em; font-size:12.5px; color:var(--text); margin-bottom:26px}
+    .login-brand .mark{width:26px; height:26px; color:var(--logo)}
+    .login-brand .byline{font-weight:500; letter-spacing:.04em; font-size:11px; color:var(--muted-2); padding-left:8px; border-left:1px solid var(--hair)}
+    .login-card h1{font-size:22px; font-weight:600; color:var(--headline); margin:0 0 6px}
+    .login-card .sub{color:var(--muted); font-size:14px; margin:0 0 26px}
+    form{display:flex; flex-direction:column; gap:12px; text-align:left}
+    label{font-size:12px; font-weight:600; color:var(--muted); margin-bottom:5px; display:block; letter-spacing:.02em}
+    input{width:100%; font-family:inherit; font-size:14.5px; color:var(--composer-text); background:var(--composer); border:1px solid var(--composer-border); border-radius:12px; padding:12px 14px; outline:none; transition:box-shadow .2s, border-color .2s}
+    input:focus{border-color:var(--accent); box-shadow:0 0 0 3px var(--accent-soft)}
+    button{margin-top:8px; height:46px; border:none; border-radius:12px; background:var(--btn-bg); color:var(--btn-text); font-family:inherit; font-size:14.5px; font-weight:600; cursor:pointer; transition:background .18s, transform .12s}
+    button:hover{background:var(--btn-bg-hover)} button:active{transform:scale(.98)}
+    .error{background:rgba(255,86,86,.12); color:#ff6a6a; font-size:13px; border-radius:10px; padding:10px 12px; margin-bottom:6px; display:none}
+    .error.show{display:block}
+    .foot{margin-top:22px; font-size:12px; color:var(--muted-2)}
+  </style>
+</head>
+<body>
+  <div class="login-card">
+    <div class="login-brand">
+      <svg class="mark" viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M7 25V7h5l4 11 4-11h5v18h-4V14l-3.4 9h-3.2L11 14v11z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" fill="currentColor" fill-opacity=".08"/></svg>
+      <span>S.C.R.I.B.E</span>
+    </div>
+    <h1>Welcome back</h1>
+    <p class="sub">Sign in to your content-automation workspace.</p>
+    <div class="error" id="error">Incorrect username or password.</div>
+    <form method="POST" action="/api/login">
+      <div><label for="username">Username</label><input id="username" name="username" type="text" autocomplete="username" autofocus required /></div>
+      <div><label for="password">Password</label><input id="password" name="password" type="password" autocomplete="current-password" required /></div>
+      <button type="submit">Sign in</button>
+    </form>
+    <div class="foot">SCRIBE &mdash; self-hosted &amp; private</div>
+  </div>
+  <script>
+    try { var t = localStorage.getItem("scribe-theme"); if (t === "dark" || t === "light") document.documentElement.setAttribute("data-theme", t); } catch (e) {}
+    if (/[?&]error=/.test(location.search)) document.getElementById("error").classList.add("show");
+  </script>
+</body>
+</html>

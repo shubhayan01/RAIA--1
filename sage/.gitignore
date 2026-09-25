@@ -1,0 +1,17 @@
+node_modules/
+.env
+.env.local
+dist/
+*.log
+.DS_Store
+
+# Execution-layer local stores (ranking snapshots, opportunity-loop history)
+data/
+
+# Python / Playwright
+__pycache__/
+*.pyc
+.venv/
+data/cache/
+# browser profile the SERP scraper creates at runtime
+sage-serp-profile/

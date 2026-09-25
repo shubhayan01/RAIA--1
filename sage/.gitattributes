@@ -1,0 +1,6 @@
+# Normalize line endings — keep LF in the repo so the Dockerfile, shell and
+# Python scripts run correctly on Linux (Render) regardless of Windows CRLF.
+* text=auto eol=lf
+*.png binary
+*.jpg binary
+*.ico binary

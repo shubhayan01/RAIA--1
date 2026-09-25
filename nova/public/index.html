@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>N.O.V.A — Business Development Agent</title>
+  <link rel="stylesheet" href="/styles.css" />
+  <link rel="stylesheet" href="/views.css" />
+</head>
+<body>
+  <div class="app" id="app">
+    <div class="atmosphere" aria-hidden="true">
+      <div class="glow-main" id="glowMain"></div>
+      <div class="glow-cyan"></div>
+      <div class="rays"></div>
+    </div>
+
+    <!-- ===== LEFT SIDEBAR — live pipeline ===== -->
+    <aside class="sidebar" id="sidebar">
+      <div class="side-head">
+        <span class="side-title">Pipeline</span>
+        <span class="side-count" id="sideCount">0</span>
+        <button class="side-refresh" id="sideRefresh" title="Refresh" aria-label="Refresh pipeline">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-2.6-6.4M21 3v6h-6"/></svg>
+        </button>
+      </div>
+      <div class="side-legend" id="sideLegend"></div>
+      <div class="side-list" id="sideList">
+        <div class="side-empty">No prospects yet. Say “research acmedigital.com”.</div>
+      </div>
+    </aside>
+    <button class="side-toggle" id="sideToggle" aria-label="Toggle pipeline sidebar" title="Toggle pipeline">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3v18M4 6h16v12H4z"/></svg>
+    </button>
+
+    <!-- ===== MAIN COLUMN ===== -->
+    <div class="main">
+      <nav>
+        <div class="brand">
+          <svg class="mark" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+            <path d="M8 24V8l16 16V8" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span>N.O.V.A</span>
+        </div>
+        <div class="nav-tabs" id="navTabs">
+          <button class="navtab active" data-view="chat">Chat</button>
+          <button class="navtab" data-view="campaigns">Campaigns</button>
+          <button class="navtab" data-view="contacts">Contacts</button>
+        </div>
+        <div class="nav-right">
+          <span class="userchip" id="userChip" hidden></span>
+          <a class="logout" id="logoutBtn" href="/api/logout" hidden>Log out</a>
+          <button class="theme-toggle" id="themeToggle" aria-label="Toggle color theme" title="Toggle theme">
+            <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+            <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.5M12 19.5V22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M2 12h2.5M19.5 12H22M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8"/></svg>
+          </button>
+        </div>
+      </nav>
+
+      <div class="stage" id="stage">
+        <div class="hero">
+          <h1>Business Development, On Autopilot</h1>
+          <p class="sub">NOVA researches prospects, writes the outreach, works the pipeline, chases follow-ups, reads replies and books the meetings — one autonomous BD workflow for agency teams.</p>
+        </div>
+
+        <div class="perch">
+          <div class="robot-wrap" aria-hidden="true">
+            <div class="robot">
+              <div class="leg l"></div><div class="leg r"></div>
+              <div class="arm l"></div><div class="arm r"></div>
+              <div class="body"></div><div class="head"></div><div class="sidebtn"></div>
+              <div class="face"><span class="eye"></span><span class="eye"></span></div>
+              <div class="antenna"></div>
+            </div>
+            <div class="robot-shadow"></div>
+          </div>
+          <div class="composer-shell">
+            <div class="composer">
+              <textarea id="input" rows="1" placeholder="Say hi, or give a command like &lsquo;research acmedigital.com&rsquo;&hellip;" aria-label="Message NOVA"></textarea>
+              <div class="composer-bottom">
+                <div class="toolpicker" id="toolpicker">
+                  <button type="button" class="toolbtn" id="toolbtn" aria-haspopup="menu" aria-expanded="false" aria-label="Choose tool">
+                    <span class="toolglyph">💬</span>
+                    <span class="toollabel">Auto</span>
+                    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+                  </button>
+                  <div class="toolmenu" id="toolmenu" role="menu" hidden></div>
+                </div>
+                <button class="generate" id="send"><span>Ask&nbsp;NOVA</span></button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="intro-actions">
+          <button class="cando" id="whatCanYouDo" type="button">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.6 4.6L18 9l-4.4 1.4L12 15l-1.6-4.6L6 9l4.4-1.4L12 3z"/></svg>
+            What can you do?
+          </button>
+        </div>
+
+        <div class="footnote"><span class="dot"></span> <span id="statusLine">NOVA &mdash; autonomous business development</span></div>
+      </div>
+
+      <div class="chat" id="chat">
+        <div class="messages" id="messages"></div>
+        <div class="dock">
+          <div class="composer-shell">
+            <div class="composer">
+              <textarea id="input2" rows="1" placeholder="Message NOVA&hellip;" aria-label="Message NOVA"></textarea>
+              <div class="composer-bottom">
+                <div class="toolpicker" id="toolpicker2">
+                  <button type="button" class="toolbtn" id="toolbtn2" aria-haspopup="menu" aria-expanded="false" aria-label="Choose tool">
+                    <span class="toolglyph">💬</span>
+                    <span class="toollabel">Auto</span>
+                    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+                  </button>
+                  <div class="toolmenu" id="toolmenu2" role="menu" hidden></div>
+                </div>
+                <button class="generate" id="send2"><span>Send</span></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== CAMPAIGNS VIEW (bulk outreach) ===== -->
+      <section class="view view-campaigns" id="viewCampaigns">
+        <div class="view-inner">
+          <div class="view-head">
+            <h2>Campaigns</h2>
+            <div class="view-head-right">
+              <select id="campSelect" class="fld-select" aria-label="Select campaign"></select>
+              <button class="mini-btn" id="campNew">+ New</button>
+              <button class="mini-btn danger" id="campDelete" title="Delete campaign">Delete</button>
+            </div>
+          </div>
+
+          <div id="campEmpty" class="view-empty">
+            No campaigns yet. Create one, upload a list of emails, set your four templates, and bulk-send.
+            <div style="margin-top:14px"><button class="act-btn" id="campNew2">Create your first campaign</button></div>
+          </div>
+
+          <div id="campBody" hidden>
+            <!-- Import -->
+            <div class="card">
+              <div class="card-title">1 · Upload contacts</div>
+              <p class="card-sub">CSV or a plain list of emails. A header row with <code>email, name, company</code> is used if present; otherwise NOVA finds the email in each line.</p>
+              <div class="import-row">
+                <label class="file-label"><input type="file" id="campFile" accept=".csv,.txt,text/csv,text/plain" hidden /> Choose file…</label>
+                <span id="campFileName" class="file-name">No file chosen</span>
+                <button class="act-btn" id="campImport" disabled>Import</button>
+              </div>
+              <div id="campImportMsg" class="import-msg"></div>
+            </div>
+
+            <!-- Templates -->
+            <div class="card">
+              <div class="card-title">2 · Configure your emails</div>
+              <p class="card-sub">Use placeholders <code>{{firstName}}</code>, <code>{{company}}</code>, <code>{{agency}}</code>, <code>{{sender}}</code> — filled from each contact's real data on send.</p>
+              <div id="campTemplates" class="tpl-grid"></div>
+            </div>
+
+            <!-- Send -->
+            <div class="card">
+              <div class="card-title">3 · Bulk send</div>
+              <p class="card-sub">Each stage sends only to contacts who haven't received it yet. Nothing sends until you click — and it always confirms first.</p>
+              <label class="chk"><input type="checkbox" id="campOnlyEligible" checked /> Only send to eligible contacts (skip ones already sent this stage)</label>
+              <div id="campSend" class="send-grid"></div>
+              <div id="campSendMsg" class="import-msg"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== CONTACTS VIEW (manage status) ===== -->
+      <section class="view view-contacts" id="viewContacts">
+        <div class="view-inner">
+          <div class="view-head">
+            <h2>Contacts</h2>
+            <div class="view-head-right">
+              <select id="contactCampSelect" class="fld-select" aria-label="Select campaign"></select>
+              <input id="contactSearch" class="fld-input" placeholder="Search email / name / company…" />
+            </div>
+          </div>
+          <div id="contactsEmpty" class="view-empty">No contacts. Import a list from the Campaigns tab.</div>
+          <div id="contactsWrap" class="tblwrap contacts-tblwrap" hidden>
+            <table class="ctbl">
+              <thead><tr><th>Email</th><th>Name</th><th>Company</th><th>Status</th><th>Last sent</th><th></th></tr></thead>
+              <tbody id="contactsBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <script src="/app.js"></script>
+  <script src="/campaigns.js"></script>
+</body>
+</html>

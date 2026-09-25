@@ -1,0 +1,103 @@
+# RAIA — MARK 1 marketing-automation suite (SCRIBE · SAGE · NOVA)
+# Render Blueprint. In Render: New → Blueprint → connect this repo (RAIA--1).
+#
+# Secrets are NOT stored in this file. Any var marked `sync: false` must be
+# filled in the Render dashboard per service before the first deploy succeeds
+# (Render will prompt for them when you apply the blueprint).
+#
+# Free plan spins services down when idle — the first request after idle takes
+# ~30-60s to wake. Fine for a demo.
+
+services:
+  # ---------------- SAGE — SEO agent ----------------
+  # Docker: Node + Python/Chromium (free browser SERP). For reliable SERP on a
+  # datacenter IP, set SERP_PROVIDER=serpapi + SERP_API_KEY in the dashboard.
+  - type: web
+    name: raia-sage
+    runtime: docker
+    rootDir: sage
+    dockerfilePath: ./Dockerfile
+    plan: free
+    healthCheckPath: /login
+    autoDeploy: true
+    envVars:
+      - key: AUTH_ENABLED
+        value: "true"
+      - key: AUTH_USERNAME
+        sync: false
+      - key: AUTH_PASSWORD
+        sync: false
+      - key: AUTH_SECRET
+        generateValue: true
+      - key: LLM_PROVIDER
+        value: groq
+      - key: LLM_MODEL
+        value: openai/gpt-oss-120b
+      - key: LLM_API_KEY
+        sync: false
+      - key: SERP_PROVIDER
+        value: google
+      - key: SERP_HEADLESS
+        value: "1"
+      - key: SERP_API_KEY
+        sync: false
+
+  # ---------------- NOVA — business-development agent ----------------
+  # Docker: Node + Python/Chromium (PDF prospect report rendering).
+  - type: web
+    name: raia-nova
+    runtime: docker
+    rootDir: nova
+    dockerfilePath: ./Dockerfile
+    plan: free
+    healthCheckPath: /login
+    autoDeploy: true
+    envVars:
+      - key: AUTH_ENABLED
+        value: "true"
+      - key: AUTH_USERNAME
+        sync: false
+      - key: AUTH_PASSWORD
+        sync: false
+      - key: AUTH_SECRET
+        generateValue: true
+      - key: LLM_PROVIDER
+        value: groq
+      - key: LLM_MODEL
+        value: openai/gpt-oss-120b
+      - key: LLM_API_KEY
+        sync: false
+
+  # ---------------- SCRIBE — content-automation agent ----------------
+  # Native Node runtime (lighter/faster). Uses Tavily for real SERP data, so it
+  # does not need the Chromium/Playwright layer for the demo.
+  - type: web
+    name: raia-scribe
+    runtime: node
+    rootDir: scribe
+    plan: free
+    healthCheckPath: /login
+    autoDeploy: true
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: NODE_VERSION
+        value: "20"
+      - key: AUTH_ENABLED
+        value: "true"
+      - key: AUTH_USERNAME
+        sync: false
+      - key: AUTH_PASSWORD
+        sync: false
+      - key: AUTH_SECRET
+        generateValue: true
+      - key: LLM_PROVIDER
+        value: groq
+      - key: LLM_MODEL
+        value: openai/gpt-oss-120b
+      - key: LLM_API_KEY
+        sync: false
+      - key: SERP_PROVIDER
+        value: tavily
+      - key: TAVILY_API_KEY
+        sync: false

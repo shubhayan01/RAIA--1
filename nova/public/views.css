@@ -1,0 +1,115 @@
+/* ========================= NAV TABS + VIEW SWITCHING ========================= */
+.nav-tabs{display:flex; gap:4px; margin:0 auto}
+.navtab{font-family:inherit; font-size:13px; font-weight:600; color:var(--muted); background:transparent; border:1px solid transparent;
+  padding:7px 15px; border-radius:999px; cursor:pointer; transition:background .16s, color .16s, border-color .16s}
+.navtab:hover{background:var(--nav-hover); color:var(--text)}
+.navtab.active{color:var(--accent-ink); background:var(--accent-soft); border-color:var(--accent-soft)}
+@media (max-width:760px){ .nav-tabs{gap:2px} .navtab{padding:6px 10px; font-size:12px} }
+
+.view{flex:1; min-height:0; overflow-y:auto; display:none; position:relative; z-index:4}
+.app[data-view="campaigns"] .view-campaigns{display:block}
+.app[data-view="contacts"] .view-contacts{display:block}
+.app[data-view="campaigns"] .stage, .app[data-view="campaigns"] .chat,
+.app[data-view="contacts"] .stage, .app[data-view="contacts"] .chat{display:none !important}
+.view-inner{max-width:900px; margin:0 auto; padding:22px 26px 40px}
+.view-head{display:flex; align-items:center; gap:12px; margin-bottom:18px; flex-wrap:wrap}
+.view-head h2{font-size:22px; font-weight:650; margin:0; color:var(--headline)}
+.view-head-right{margin-left:auto; display:flex; gap:8px; align-items:center; flex-wrap:wrap}
+.view-empty{color:var(--muted); font-size:14px; text-align:center; padding:60px 20px; line-height:1.6}
+
+.fld-select,.fld-input{font-family:inherit; font-size:13px; color:var(--composer-text); background:var(--composer);
+  border:1px solid var(--composer-border); border-radius:10px; padding:8px 11px; outline:none}
+.fld-input{min-width:220px}
+.fld-select:focus,.fld-input:focus{border-color:var(--accent); box-shadow:0 0 0 3px var(--accent-soft)}
+.mini-btn{font-family:inherit; font-size:12.5px; font-weight:600; color:var(--text); background:var(--chip-bg);
+  border:1px solid var(--toggle-border); border-radius:10px; padding:8px 12px; cursor:pointer}
+.mini-btn:hover{background:var(--nav-hover)}
+.mini-btn.danger{color:#e0555f}
+
+.card{background:var(--side); border:1px solid var(--side-border); border-radius:16px; padding:18px 18px 20px; margin-bottom:16px}
+.card-title{font-size:14px; font-weight:700; color:var(--headline); margin-bottom:4px}
+.card-sub{font-size:12.5px; color:var(--muted); margin:0 0 14px; line-height:1.5}
+.card-sub code{background:var(--chip-bg); padding:1px 6px; border-radius:5px; font-size:11.5px; color:var(--accent-ink)}
+
+.import-row{display:flex; align-items:center; gap:10px; flex-wrap:wrap}
+.file-label{display:inline-flex; align-items:center; font-size:13px; font-weight:600; color:var(--accent-ink);
+  background:var(--accent-soft); border:1px solid var(--accent-soft); border-radius:10px; padding:9px 14px; cursor:pointer}
+.file-name{font-size:12.5px; color:var(--muted)}
+.import-msg{font-size:12.5px; margin-top:10px; color:var(--muted)}
+.import-msg.ok{color:#25a06a} .import-msg.err{color:#e0555f}
+
+.tpl-grid{display:grid; grid-template-columns:1fr 1fr; gap:12px}
+@media (max-width:720px){ .tpl-grid{grid-template-columns:1fr} }
+.tpl{border:1px solid var(--side-border); border-radius:12px; padding:12px; background:var(--app)}
+.tpl-head{display:flex; align-items:center; gap:8px; margin-bottom:8px}
+.tpl-name{font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:.04em; color:var(--accent-ink)}
+.tpl-ai{margin-left:auto; font-size:11px; font-weight:600; color:var(--muted); background:transparent; border:1px solid var(--toggle-border); border-radius:8px; padding:4px 9px; cursor:pointer}
+.tpl-ai:hover{color:var(--accent-ink); border-color:var(--accent-soft)}
+.tpl input.tpl-subj{width:100%; font-family:inherit; font-size:13px; color:var(--composer-text); background:var(--composer);
+  border:1px solid var(--composer-border); border-radius:9px; padding:8px 10px; outline:none; margin-bottom:8px}
+.tpl textarea.tpl-body{width:100%; min-height:130px; resize:vertical; font-family:inherit; font-size:12.5px; line-height:1.5;
+  color:var(--composer-text); background:var(--composer); border:1px solid var(--composer-border); border-radius:9px; padding:9px 10px; outline:none}
+.tpl input:focus,.tpl textarea:focus{border-color:var(--accent); box-shadow:0 0 0 3px var(--accent-soft)}
+.tpl-saved{font-size:11px; color:#25a06a; margin-top:6px; height:14px}
+
+.chk{display:flex; align-items:center; gap:8px; font-size:13px; color:var(--muted); margin-bottom:14px; cursor:pointer}
+.chk input{accent-color:var(--accent)}
+.send-grid{display:grid; grid-template-columns:1fr 1fr; gap:10px}
+@media (max-width:720px){ .send-grid{grid-template-columns:1fr} }
+.send-btn{display:flex; align-items:center; justify-content:space-between; gap:10px; font-family:inherit; font-size:13.5px; font-weight:600;
+  color:#1a1206; background:var(--accent); border:none; border-radius:12px; padding:13px 16px; cursor:pointer; transition:filter .15s}
+.send-btn:hover{filter:brightness(1.05)} .send-btn:disabled{opacity:.5; cursor:default; filter:none}
+.send-btn .cnt{font-size:11.5px; font-weight:700; background:rgba(26,18,6,.18); padding:2px 9px; border-radius:999px}
+
+/* Contacts table */
+.contacts-tblwrap{border:1px solid var(--side-border); border-radius:14px; overflow:auto; max-height:calc(100% - 80px)}
+.ctbl{width:100%; border-collapse:collapse; font-size:13px}
+.ctbl th{position:sticky; top:0; background:var(--side); text-align:left; font-size:11px; text-transform:uppercase; letter-spacing:.04em;
+  color:var(--muted); font-weight:700; padding:10px 12px; border-bottom:1px solid var(--side-border); white-space:nowrap; z-index:1}
+.ctbl td{padding:9px 12px; border-bottom:1px solid var(--hair); vertical-align:middle}
+.ctbl tr:last-child td{border-bottom:none}
+.ctbl .c-email{font-weight:600; color:var(--text)}
+.cstatus{font-family:inherit; font-size:12px; color:var(--text); background:var(--composer); border:1px solid var(--composer-border);
+  border-radius:8px; padding:5px 8px; cursor:pointer}
+.c-remove{background:transparent; border:none; color:var(--muted-2); cursor:pointer; font-size:15px; padding:2px 6px; border-radius:6px}
+.c-remove:hover{color:#e0555f; background:var(--nav-hover)}
+
+/* ========================= CUTE ROBOT (intro, hovering over composer) ========================= */
+.perch{padding-top:120px}
+.robot-wrap{position:absolute; left:50%; top:-66px; transform:translateX(-50%) scale(.58); transform-origin:bottom center; z-index:5;
+  filter:drop-shadow(0 22px 30px rgba(120,80,10,.32)); pointer-events:none; animation:hover 4.2s ease-in-out infinite}
+@keyframes hover{0%,100%{transform:translateX(-50%) translateY(0) scale(.58)}50%{transform:translateX(-50%) translateY(-12px) scale(.58)}}
+.app.chatting .robot-wrap{display:none}
+@media (prefers-reduced-motion:reduce){ .robot-wrap{animation:none} }
+.robot{position:relative; width:206px; height:196px}
+.robot .antenna{position:absolute; left:50%; top:-14px; width:3px; height:18px; transform:translateX(-50%);
+  background:linear-gradient(180deg,#4a5058,#22262c)}
+.robot .antenna::after{content:""; position:absolute; left:50%; top:-8px; width:12px; height:12px; transform:translateX(-50%);
+  border-radius:50%; background:radial-gradient(circle at 35% 30%, #ffd98a, var(--accent)); box-shadow:0 0 12px var(--accent)}
+.robot .leg{position:absolute; bottom:0; width:38px; height:24px; border-radius:12px 12px 13px 13px;
+  background:linear-gradient(180deg,#2b2f36,#15181d); box-shadow:inset 0 3px 4px rgba(255,255,255,.06), 0 4px 6px rgba(0,0,0,.4)}
+.robot .leg.l{left:56px} .robot .leg.r{right:56px}
+.robot .arm{position:absolute; top:106px; width:26px; height:56px; border-radius:14px;
+  background:linear-gradient(150deg,#33383f,#1a1d22); box-shadow:inset 0 2px 3px rgba(255,255,255,.07), 0 5px 8px rgba(0,0,0,.35); z-index:1}
+.robot .arm.l{left:8px; transform:rotate(8deg)} .robot .arm.r{right:8px; transform:rotate(-8deg); animation:wave 3.2s ease-in-out infinite}
+@keyframes wave{0%,88%,100%{transform:rotate(-8deg)}92%{transform:rotate(-26deg)}96%{transform:rotate(-2deg)}}
+.robot .body{position:absolute; left:50%; top:108px; transform:translateX(-50%); width:126px; height:82px; border-radius:38px 38px 32px 32px;
+  background:linear-gradient(165deg,#3a3f47 0%,#262a31 46%,#15181d 100%);
+  box-shadow:inset 0 3px 6px rgba(255,255,255,.10), inset 0 -8px 14px rgba(0,0,0,.5), 0 10px 18px rgba(0,0,0,.4); z-index:2}
+.robot .head{position:absolute; left:50%; top:2px; transform:translateX(-50%); width:196px; height:156px; border-radius:50px;
+  background:linear-gradient(158deg,#40454e 0%,#2a2f36 42%,#161a1f 82%,#0f1216 100%);
+  box-shadow:inset 0 4px 10px rgba(255,255,255,.14), inset 0 -16px 26px rgba(0,0,0,.55), 0 16px 30px rgba(0,0,0,.4); z-index:4}
+.robot .sidebtn{position:absolute; right:-6px; top:66px; width:11px; height:38px; border-radius:6px;
+  background:linear-gradient(180deg,#4a5058,#22262c); box-shadow:inset 0 2px 2px rgba(255,255,255,.15), 0 3px 6px rgba(0,0,0,.4); z-index:5}
+.robot .face{position:absolute; left:50%; top:40px; transform:translateX(-50%); width:150px; height:104px; border-radius:38px;
+  background:radial-gradient(ellipse at 50% 36%, #14181e 0%, #0a0d11 60%, #05070a 100%);
+  box-shadow:inset 0 6px 14px rgba(0,0,0,.85), inset 0 -2px 4px rgba(255,255,255,.04); z-index:5;
+  display:flex; align-items:center; justify-content:center; gap:24px}
+.robot .eye{width:26px; height:40px; border-radius:13px; background:linear-gradient(180deg,#ffe6b0,#ffb347);
+  box-shadow:0 0 14px rgba(245,190,90,.85), 0 0 4px rgba(255,240,200,.9); animation:blink 5.5s infinite}
+@keyframes blink{0%,92%,100%{transform:scaleY(1)}96%{transform:scaleY(.08)}}
+.robot-shadow{position:absolute; left:50%; bottom:-14px; width:140px; height:20px; transform:translateX(-50%);
+  background:radial-gradient(ellipse at center, rgba(0,0,0,.32), transparent 70%); filter:blur(3px); animation:shadow 4.2s ease-in-out infinite}
+@keyframes shadow{0%,100%{opacity:.5; width:140px}50%{opacity:.3; width:112px}}
+@media (prefers-reduced-motion:reduce){ .robot .eye,.robot .arm.r,.robot-shadow{animation:none} }
+@media (max-width:640px){ .perch{padding-top:104px} .robot-wrap{top:-58px} }

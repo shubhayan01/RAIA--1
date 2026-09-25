@@ -1,0 +1,27 @@
+# ---- Monorepo root ignore (per-app .gitignore files also apply) ----
+
+# Dependencies
+**/node_modules/
+
+# Env / secrets — NEVER commit these
+**/.env
+**/.env.local
+.env
+.env.local
+
+# Build output
+**/dist/
+
+# Logs
+**/*.log
+
+# Python / Playwright
+**/__pycache__/
+**/*.pyc
+**/.venv/
+**/data/cache/
+**/sage-serp-profile/
+
+# OS cruft
+.DS_Store
+Thumbs.db

@@ -15,8 +15,9 @@ services:
   - type: web
     name: raia-sage
     runtime: docker
-    rootDir: sage
-    dockerfilePath: ./Dockerfile
+    # dockerfilePath and dockerContext are resolved from the REPO ROOT.
+    dockerfilePath: sage/Dockerfile
+    dockerContext: sage
     plan: free
     healthCheckPath: /login
     autoDeploy: true
@@ -47,8 +48,9 @@ services:
   - type: web
     name: raia-nova
     runtime: docker
-    rootDir: nova
-    dockerfilePath: ./Dockerfile
+    # dockerfilePath and dockerContext are resolved from the REPO ROOT.
+    dockerfilePath: nova/Dockerfile
+    dockerContext: nova
     plan: free
     healthCheckPath: /login
     autoDeploy: true
